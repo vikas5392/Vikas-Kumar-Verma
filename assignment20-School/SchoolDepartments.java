@@ -1,71 +1,116 @@
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-class School{
-    final String director="dir";
-     final String principal="princ";
-
-    void staffMembers(){
-        System.out.println("Director:"+this.director);
-        System.out.println(("Principal:"+this.principal));
+class Department{String employeeName;
+    int employeeId;
+    String departmentname;
+    void addEmployee(String En,int Eid){
+        System.out.println("Employee name:"+En);
+        System.out.println("Employee ID:"+Eid);
+    }
+    void addEmployee(String En){
+        System.out.println("Employee Name:"+En);
+    }
+    public String toString(){
+        return "Department: "+departmentname+", Employee Name : "+employeeName+" , Employee ID: "+employeeId;
     }
 }
-class AcademicDepartment extends School {
-
-    String[] HeadOfDepartment ={"Hod1","Hod2","Hod3","Hod4","Hod5"};
-    String[] Teachers ={"Teacher1","Teacher2","Teacher3","Teacher4","Teacher5","Teacher6","Teacher7","Teacher8","Teacher9","Teacher10","Teacher11","Teacher12","Teacher13","Teacher14"};
-
-
-    void staffMembers() {
-        System.out.println();
-        System.out.println("//Academic Department//");
-        System.out.println("Director:"+super.director);
-        System.out.println(("Principal:"+super.principal));
-        System.out.println("Head of Departments"+ Arrays.toString(HeadOfDepartment));
-        System.out.println("Teachers:"+Arrays.toString(Teachers));
-        System.out.println();
+class Employee{
+String departmentcode;
+String designation;
+String departmentName;
+int numberofemployee;
+void addDepartmentDetail(String dn){
+    System.out.println("Under the Department:"+dn);
+}
+    void addDepartmentDetail(String dn,String dc,int ne){
+        System.out.println("Under the Department:"+dn);
+        System.out.println("Department code:"+dc);
+        System.out.println("Total numbers:"+ne);
+    }
+    public String toString(){
+        return "Deesignation: "+designation+", Department : "+departmentName+" , Number of Employees: "+numberofemployee;
     }
 }
-class SportsDepartment extends School{
-    String[] coaches={"coach1","coach2","coach3","coach4","coach5"};
-    String[] PEteachers={"PE1","PE1","PE1","PE1","PE1","PE1","PE1","PE1","PE1","PE1","PE1","PE1"};
-    void staffMembers() {
-        System.out.println();
-        System.out.println("//Sports Department//");
-        System.out.println("Director:"+super.director);
-        System.out.println(("Principal:"+super.principal));
-        System.out.println("Coaches:"+ Arrays.toString(coaches));
-        System.out.println("P.E Teachers:"+Arrays.toString(PEteachers));
-        System.out.println();
-    }
-}
+class Academic extends Department{
 
-class AdministractionDepartment extends School{
-    String accountant;
-    String registrar;
-    AdministractionDepartment(String a,String r){
-        this.accountant=a;
-        this.registrar=r;
-    }
-    void staffMembers() {
-        System.out.println();
-        System.out.println("//Administration Department//");
-        System.out.println("Director:"+super.director);
-        System.out.println(("Principal:"+super.principal));
-        System.out.println("Accountant:"+ accountant);
-        System.out.println("Registrar:"+registrar);
-        System.out.println();
+Academic(String n,int id,String dn){
+    this.employeeName=n;
+    this.employeeId=id;
+    this.departmentname=dn;
+}
+}
+class Administration extends Department{
+Administration(String n,int id,String dn){
+    this.employeeName=n;
+    this.employeeId=id;
+    this.departmentname=dn;
+}
+}
+class Teacher extends Employee{
+    Teacher(String dn,int ne,String des ){
+
+        this.departmentName=dn;
+        this.numberofemployee=ne;
+        this.designation=des;
     }
 
 }
+class LabAssistant extends Employee{
+    LabAssistant(String dn,int ne,String des ){
+
+        this.departmentName=dn;
+        this.numberofemployee=ne;
+        this.designation=des;
+    }
+}
+    class Clerk extends Employee{
+        Clerk(String dn,int ne ,String des){
+
+            this.departmentName=dn;
+            this.numberofemployee=ne;
+            this.designation=des;
+        }
+    }
+
+
 public class SchoolDepartments {
 
     public static void main(String[] args) {
-AdministractionDepartment ad=new AdministractionDepartment("accnt1","regstrar1");
-	AcademicDepartment a=new AcademicDepartment();
-	SportsDepartment s=new SportsDepartment();
-	a.staffMembers();
-s.staffMembers();
-ad.staffMembers();
+	    Academic academicemployee1=new Academic("kartik",29,"Academic");
+        Academic academicemployee2=new Academic("Seema",27,"Academic");
+
+        Administration administrationemployee1=new Administration("sahil",39,"Administration");
+        Administration administrationemployee2=new Administration("suraj",17,"Administration");
+
+
+        List<Department> departmentarray=new ArrayList<Department>();
+        departmentarray.add(academicemployee1);
+        departmentarray.add(academicemployee2);
+
+        departmentarray.add(administrationemployee1);
+        departmentarray.add(administrationemployee2);
+        for (Department i:departmentarray
+             ) {
+            System.out.println(i);
+        }
+        System.out.println();
+            Teacher teacher=new Teacher("Academic",28,"Teacher");
+            LabAssistant la=new LabAssistant("Academic",34,"Lab Assistant");
+            Clerk ck=new Clerk("Administration",12,"Clerk");
+
+            List<Employee> employeearray=new ArrayList<Employee>();
+            employeearray.add(teacher);
+            employeearray.add(la);
+            employeearray.add(ck);
+            for (Employee e:employeearray
+                 ) {
+                System.out.println(e);
+
+            }
+
+        }
+
     }
-}
+
